@@ -1,0 +1,46 @@
+.item-container {
+    border-style: solid;
+    border-color: rgb(123, 123, 228);
+    border-radius: 10px;
+    padding: 1em;
+    width: fit-content;
+    text-transform: capitalize;
+    margin-top: 1rem;
+}
+
+.sub-category-container {
+    margin-left: 2em;
+}
+
+.template-form {
+    border-style: solid;
+    border-color: rgb(75, 75, 240);
+    border-radius: 10px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.form-input {
+    margin: 0.4em;
+}
+
+.form-label {
+    width: 50%;
+    text-align: right;
+}   
+
+.label-input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit-button {
+    text-transform: capitalize;
+    background-color: rgb(75, 35, 145);
+    color: white;
+    border-radius: 14px;
+    border: 0;
+    margin: 0.7em;
+}

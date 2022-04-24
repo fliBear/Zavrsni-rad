@@ -1,0 +1,35 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    height: 3rem;
+    width: 100vw;
+    background-color: rgb(131, 94, 161);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.link-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 15vw;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.page-body {
+    padding-left: 2rem;
+}
