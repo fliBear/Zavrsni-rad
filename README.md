@@ -6,8 +6,8 @@ Pokrenuti jar datoteku s API-jem. Zatim iz komandne linije pokrenuti React proje
 
 ### Što je prikazano
 Kod je u src datoteci. Dio koda koji je zadužen za "kopanje" po API-ju je u hef datoteci. Dio koda za izgradnju je u bob datoteci.
-Cars i Manufacturers stranice pokazuju što je prikaže kada se dohvate podatci o svim automobilima ili proizvođačima.
-single car stranica pokazuje jedan automobil.
+Cars i Manufacturers stranice pokazuju što se prikaže kada se dohvate podatci o svim automobilima ili proizvođačima.
+Single car stranica pokazuje jedan automobil.
 Obrasci su napravljeni iz API-jevog odogovora, a kako izgleda JSON se vidi u poveznicama na prikazanim podatcima.
 Toga neće biti kada napravim preusmjeravanje s API-ja na stranicu.
 
