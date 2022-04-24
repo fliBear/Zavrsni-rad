@@ -21,7 +21,7 @@ html {
 .link-container {
     display: flex;
     justify-content: space-evenly;
-    width: 15vw;
+    width: 30vw;
 }
 
 .nav-link {

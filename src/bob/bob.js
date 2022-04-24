@@ -17,7 +17,7 @@ export default class Bob {
         this.#toBuild = await follow(...arguments);
         if (
             Object.keys(this.#toBuild).length === 1 &&
-            this.#toBuild[Object.keys(this.#toBuild) != "_links"]
+            this.#toBuild[Object.keys(this.#toBuild)[0]] != "_links"
         ) {
             for (const key in this.#toBuild) {
                 this.#toBuild = this.#toBuild[key];

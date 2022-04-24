@@ -14,6 +14,9 @@ export default function Navbar() {
                 <Link to="/manufacturers" className="nav-link">
                     Manufacturers
                 </Link>
+                <Link to="/car" className="nav-link">
+                    Single Car
+                </Link>
             </div>
         </nav>
     );

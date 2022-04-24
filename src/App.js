@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Cars from "./pages/Cars";
 import Manufacturers from "./pages/Manufacturers";
 import Navbar from "./Navbar";
+import Car from "./pages/Car";
 import "./styles/styles.css";
 
 function App() {
@@ -36,6 +37,16 @@ function App() {
                         <div className="page-container">
                             <Navbar></Navbar>
                             <Manufacturers></Manufacturers>
+                        </div>
+                    }
+                ></Route>
+                <Route
+                    exact
+                    path="/car"
+                    element={
+                        <div className="page-container">
+                            <Navbar></Navbar>
+                            <Car></Car>
                         </div>
                     }
                 ></Route>
