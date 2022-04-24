@@ -2,7 +2,8 @@
 Prilikom dohvaćanja s git-a, pozicionirati se u direktorij site-demo i upisato npm install. Može potrajati jer React zauzima nešto više od 100MB.
 
 ### Pokretanje
-Pokrenuti jar datoteku s API-jem. Zatim iz komandne linije pokrenuti React projekt s npm start.
+Pokrenuti jar datoteku s API-jem upisati java -jar zr.jar (pisano je u Java verziji 16, ali mislim da će raditi na nižim). 
+Zatim iz komandne linije pokrenuti React projekt s npm start.
 
 ### Što je prikazano
 Kod je u src datoteci. Dio koda koji je zadužen za "kopanje" po API-ju je u hef datoteci. Dio koda za izgradnju je u bob datoteci.
