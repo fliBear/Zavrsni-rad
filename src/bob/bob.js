@@ -5,6 +5,7 @@ import uniqid from "uniqid";
 import "./bob-styles.css";
 import TemplateForm from "./form-builder";
 import { isObject } from "./utils";
+import Embedded from "./Embedded";
 
 export default class Bob {
     #includeEmbedded = false; // <--------------
@@ -88,53 +89,6 @@ export default class Bob {
         });
     }
 
-    #buildEmbedded(someData) {
-        if (someData["_embedded"] == undefined) {
-            return;
-        } else {
-            let dataToBuild = [];
-            let embedded = someData["_embedded"];
-            for (const e in embedded) {
-                if (Array.isArray(embedded[e])) {
-                    for (const i in embedded[e]) {
-                        let currentItem = embedded[e][i];
-                        if (Object.keys(currentItem).length == 1) {
-                            //possibly found element of type [{name:{data}}, ...]
-                            const key = Object.keys(currentItem)[0];
-                            if (isObject(currentItem[key])) {
-                                //is of type [{name:{data}}, ...]
-                                dataToBuild.push(currentItem[key]);
-                            } else {
-                                //is of type ["name":data, ...]
-                                dataToBuild.push(currentItem);
-                            }
-                        } else {
-                            //found element of type [{data}, ...]
-                            dataToBuild.push(currentItem);
-                        }
-                    }
-                } else {
-                    dataToBuild.push(embedded[e]);
-                }
-            }
-            return (
-                <div>
-                    {dataToBuild.map((e) => {
-                        const foundData = findData(e);
-                        const links = extractLinks(e);
-                        const forms = this.#buildForms(links);
-                        return (
-                            <div key={uniqid()} className="item-container">
-                                {this.#buildData(foundData)}
-                                {forms}
-                            </div>
-                        );
-                    })}
-                </div>
-            );
-        }
-    }
-
     build() {
         const foundData = findData(this.#toBuild);
         const links = extractLinks(this.#toBuild);
@@ -143,7 +97,13 @@ export default class Bob {
             <div className="item-container">
                 {this.#buildData(foundData)}
                 {forms}
-                {this.#includeEmbedded && this.#buildEmbedded(this.#toBuild)}
+                {this.#includeEmbedded && (
+                    <Embedded
+                        buildData={this.#buildData}
+                        buildForms={this.#buildForms}
+                        someData={this.#toBuild}
+                    ></Embedded>
+                )}
             </div>
         );
     }

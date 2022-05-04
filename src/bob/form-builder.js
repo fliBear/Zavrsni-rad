@@ -40,7 +40,7 @@ export default function TemplateForm(data) {
             onSubmit={handleSubmit}
         >
             {inputs}
-            <button className="submit-button">{data["submit"]}</button>
+            <button className="btn">{data["submit"]}</button>
         </form>
     );
 }

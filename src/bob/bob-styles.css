@@ -1,6 +1,5 @@
 .item-container {
-    border-style: solid;
-    border-color: rgb(123, 123, 228);
+    background-color: rgb(247, 238, 255);
     border-radius: 10px;
     padding: 1em;
     width: fit-content;
@@ -36,6 +35,15 @@
     justify-content: space-between;
 }
 
+.btn {
+    text-transform: capitalize;
+    background-color: rgb(75, 35, 145);
+    color: white;
+    border-radius: 14px;
+    border: 0;
+    margin: 0.7em;
+}
+
 .submit-button {
     text-transform: capitalize;
     background-color: rgb(75, 35, 145);
@@ -43,4 +51,21 @@
     border-radius: 14px;
     border: 0;
     margin: 0.7em;
+}
+
+.btn:hover {
+    background-color: rgb(120, 102, 152);
+}
+
+.min-max-btn {
+    background-color: rgb(75, 35, 145);
+    width: 2em;
+    height: 2em;
+}
+
+.min-max-btn-container {
+    width: 90%;
+    background-color: rgb(253, 251, 255);
+    border-radius: 5px;
+    margin-top: 0.5em;
 }
