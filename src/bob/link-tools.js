@@ -1,4 +1,37 @@
-function linksAndTemplatesMatcing(data) {}
+function linksAndTemplatesMatcing(data) {
+    const templates = data["_templates"];
+    const links = data["_links"];
+    const linkData = [];
+    //Save all templates
+    for (const temp in templates) {
+        if (templates[temp]["target"] === undefined) {
+            throw "Response must have target in template if _links and _templates are not of matching sizes.";
+        }
+        //If title for template not given, save link so title from _links can be taken
+        if (templates[temp]["title"] === undefined) {
+            linkData.push([templates[temp]["target"], templates[temp]]);
+        } else {
+            linkData.push([templates[temp]["title"], templates[temp]]);
+        }
+    }
+    //Fix names of those with links for names
+    for (const link in links) {
+        let title = null;
+        //Set title for link
+        if (links[link]["title"] === undefined) {
+            title = link;
+        } else {
+            title = links[link]["title"];
+        }
+        //Change title where needed
+        for (let i = 0; i < linkData.length; i++) {
+            if (linkData[i][0] === links[link]["href"]) {
+                linkData[i][0] = title;
+            }
+        }
+    }
+    return linkData;
+}
 
 function linksAndTemplatesMissmatching(data) {
     const targets = [];
@@ -22,14 +55,17 @@ function linksAndTemplatesMissmatching(data) {
     //Save all links not saved previously, and fix names of those with links for names
     for (const link in links) {
         let title = null;
+        //Set title for link
         if (links[link]["title"] === undefined) {
             title = link;
         } else {
             title = links[link]["title"];
         }
+        //If new link is found (that means not from template), add it
         if (!targets.includes(links[link]["href"])) {
             linkData.push([title, links[link]["href"]]);
         } else {
+            //Change title where needed
             for (let i = 0; i < linkData.length; i++) {
                 if (linkData[i][0] === links[link]["href"]) {
                     linkData[i][0] = title;
