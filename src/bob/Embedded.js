@@ -1,17 +1,17 @@
 import { useState } from "react";
 import uniqid from "uniqid";
 import { isObject } from "./utils";
-import { extractData, findData } from "./data-tools";
+import { findData } from "./data-tools";
 import { extractLinks } from "./link-tools";
 import SingleEmbedded from "./SingleEmbedded";
-//build data, build forms
+
 export default function Embedded(props) {
     const [minimized, setMinimized] = useState(true);
 
     function minimizeOrMaximize() {
         setMinimized(!minimized);
     }
-
+    console.log(props.styleData);
     if (props.someData["_embedded"] == undefined) {
         return;
     } else {
@@ -47,13 +47,14 @@ export default function Embedded(props) {
                 {dataToBuild.map((e) => {
                     const foundData = findData(e);
                     const links = extractLinks(e);
-                    const forms = props.buildForms(links);
+                    const forms = props.buildForms(links, props.styleData);
                     return (
                         <SingleEmbedded
                             key={uniqid()}
                             buildData={props.buildData}
                             forms={forms}
                             foundData={foundData}
+                            styleData={props.styleData}
                         ></SingleEmbedded>
                     );
                 })}

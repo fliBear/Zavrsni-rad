@@ -38,9 +38,12 @@ export default function TemplateForm(data) {
             className="template-form"
             title={data["title"] !== undefined ? data["title"] : ""}
             onSubmit={handleSubmit}
+            style={data.styleData["form"]}
         >
             {inputs}
-            <button className="btn">{data["submit"]}</button>
+            <button className="btn" style={data.styleData["btn"]}>
+                {data["submit"]}
+            </button>
         </form>
     );
 }

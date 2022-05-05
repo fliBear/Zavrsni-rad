@@ -10,9 +10,9 @@ import Embedded from "./Embedded";
 export default class Bob {
     #includeEmbedded = false; // <--------------
     #toBuild;
-    #links;
     #specificAttributes = [];
     #useSpecificAttributes = false;
+    styles = {};
 
     async path() {
         this.#toBuild = await follow(...arguments);
@@ -36,6 +36,10 @@ export default class Bob {
 
     includeEmbedded() {
         this.#includeEmbedded = true;
+    }
+
+    setStyle(style, styleObj) {
+        this.styles[style] = styleObj;
     }
 
     #buildData(someData) {
@@ -69,7 +73,7 @@ export default class Bob {
         );
     }
 
-    #buildForms(someData) {
+    #buildForms(someData, styleData) {
         return someData.map((l) => {
             if (isObject(l[1])) {
                 return (
@@ -77,6 +81,7 @@ export default class Bob {
                         key={uniqid()}
                         submit={l[0]}
                         {...l[1]}
+                        styleData={styleData}
                     ></TemplateForm>
                 );
             } else {
@@ -92,9 +97,9 @@ export default class Bob {
     build() {
         const foundData = findData(this.#toBuild);
         const links = extractLinks(this.#toBuild);
-        const forms = this.#buildForms(links);
+        const forms = this.#buildForms(links, this.styles);
         return (
-            <div className="item-container">
+            <div className="item-container" style={this.styles["container"]}>
                 {this.#buildData(foundData)}
                 {forms}
                 {this.#includeEmbedded && (
@@ -102,6 +107,7 @@ export default class Bob {
                         buildData={this.#buildData}
                         buildForms={this.#buildForms}
                         someData={this.#toBuild}
+                        styleData={this.styles}
                     ></Embedded>
                 )}
             </div>

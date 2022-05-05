@@ -8,21 +8,29 @@ export default function SingleEmbedded(props) {
     }
 
     return minimized ? (
-        <div className="min-max-btn-container">
+        <div
+            className="min-max-btn-container"
+            style={props.styleData["min-max"]}
+        >
             <button
                 className="btn  min-max-btn"
+                style={props.styleData["btn"]}
                 onClick={() => minimizeOrMaximize()}
             >
                 +
             </button>
         </div>
     ) : (
-        <div>
+        <div style={props.styleData["embedded"]}>
             {props.buildData(props.foundData)}
             {props.forms}
-            <div className="min-max-btn-container">
+            <div
+                className="min-max-btn-container"
+                style={props.styleData["min-max"]}
+            >
                 <button
                     className="btn  min-max-btn"
+                    style={props.styleData["btn"]}
                     onClick={() => minimizeOrMaximize()}
                 >
                     -
