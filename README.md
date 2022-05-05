@@ -1,5 +1,5 @@
 ### Setup
-Prilikom dohvaćanja s git-a, pozicionirati se u direktorij site-demo i upisato npm install. Može potrajati jer React zauzima nešto više od 100MB.
+Prilikom dohvaćanja s git-a, pozicionirati se u direktorij site-demo i upisati npm install. Može potrajati jer React zauzima nešto više od 100MB.
 
 ### Pokretanje
 Pokrenuti jar datoteku s API-jem upisati java -jar zr.jar (pisano je u Java verziji 16, ali mislim da će raditi na nižim). 
@@ -13,7 +13,4 @@ Obrasci su napravljeni iz API-jevog odogovora, a kako izgleda JSON se vidi u pov
 Toga neće biti kada napravim preusmjeravanje s API-ja na stranicu.
 
 ### TODO
-- Stilizirati bolje. Pogotovo minimizacija embedaninh podataka.
-- Omogućiti (djelomično) proizvoljnu stilizaciju.
 - Get zahtjeve preusmjeriti na React aplikaciju, ne pustiti da naprave poziv na API.
-- Riješiti rubne slučajeve kod HAL Forms formata
