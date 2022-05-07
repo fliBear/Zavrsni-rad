@@ -13,6 +13,7 @@ export default class Bob {
     #specificAttributes = [];
     #useSpecificAttributes = false;
     styles = {};
+    appRoot;
 
     async path() {
         this.#toBuild = await follow(...arguments);
@@ -24,6 +25,10 @@ export default class Bob {
                 this.#toBuild = this.#toBuild[key];
             }
         }
+    }
+
+    setAppRoot(root) {
+        this.appRoot = root;
     }
 
     useSpecificAttributes(attributes) {
@@ -73,7 +78,7 @@ export default class Bob {
         );
     }
 
-    #buildForms(someData, styleData) {
+    #buildForms(someData, styleData, root) {
         return someData.map((l) => {
             if (isObject(l[1])) {
                 return (
@@ -85,9 +90,15 @@ export default class Bob {
                     ></TemplateForm>
                 );
             } else {
+                let redirected =
+                    root === undefined
+                        ? l[1]
+                        : root + "/" + l[1].split("/").slice(3).join("/");
+                console.log(redirected);
+                console.log(l[1].split("/").slice(3).join("/"));
                 return (
                     <p key={uniqid()}>
-                        <a href={l[1]}>{l[0]}</a>
+                        <a href={redirected}>{l[0]}</a>
                     </p>
                 );
             }
@@ -97,7 +108,7 @@ export default class Bob {
     build() {
         const foundData = findData(this.#toBuild);
         const links = extractLinks(this.#toBuild);
-        const forms = this.#buildForms(links, this.styles);
+        const forms = this.#buildForms(links, this.styles, this.appRoot);
         return (
             <div className="item-container" style={this.styles["container"]}>
                 {this.#buildData(foundData)}
@@ -108,6 +119,7 @@ export default class Bob {
                         buildForms={this.#buildForms}
                         someData={this.#toBuild}
                         styleData={this.styles}
+                        root={this.appRoot}
                     ></Embedded>
                 )}
             </div>

@@ -9,6 +9,7 @@ export default function Cars() {
         //Give path to data to show
         await bob.path("http://localhost:8080", "cars");
         bob.includeEmbedded();
+        bob.setAppRoot("http://localhost:3000");
         //Give instruction to build data and save inside state
         const getData = await bob.build();
         setData(getData);

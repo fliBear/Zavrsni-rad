@@ -22,7 +22,7 @@ function App() {
                 ></Route>
                 <Route
                     exact
-                    path="/cars"
+                    path="/HAL-Forms/cars"
                     element={
                         <div className="page-container">
                             <Navbar></Navbar>
@@ -32,7 +32,7 @@ function App() {
                 ></Route>
                 <Route
                     exact
-                    path="/manufacturers"
+                    path="/HAL-Forms/manufacturers"
                     element={
                         <div className="page-container">
                             <Navbar></Navbar>
@@ -42,7 +42,7 @@ function App() {
                 ></Route>
                 <Route
                     exact
-                    path="/car"
+                    path="/HAL-Forms/car/:id"
                     element={
                         <div className="page-container">
                             <Navbar></Navbar>

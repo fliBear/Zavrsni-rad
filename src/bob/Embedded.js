@@ -11,7 +11,6 @@ export default function Embedded(props) {
     function minimizeOrMaximize() {
         setMinimized(!minimized);
     }
-    console.log(props.styleData);
     if (props.someData["_embedded"] == undefined) {
         return;
     } else {
@@ -47,7 +46,11 @@ export default function Embedded(props) {
                 {dataToBuild.map((e) => {
                     const foundData = findData(e);
                     const links = extractLinks(e);
-                    const forms = props.buildForms(links, props.styleData);
+                    const forms = props.buildForms(
+                        links,
+                        props.styleData,
+                        props.root
+                    );
                     return (
                         <SingleEmbedded
                             key={uniqid()}
