@@ -94,8 +94,6 @@ export default class Bob {
                     root === undefined
                         ? l[1]
                         : root + "/" + l[1].split("/").slice(3).join("/");
-                console.log(redirected);
-                console.log(l[1].split("/").slice(3).join("/"));
                 return (
                     <p key={uniqid()}>
                         <a href={redirected}>{l[0]}</a>
