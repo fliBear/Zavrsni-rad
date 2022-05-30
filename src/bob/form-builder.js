@@ -21,7 +21,7 @@ export default function TemplateForm(data) {
         await axios({
             url: data["target"],
             data: JSON.stringify(formData),
-            method: "post",
+            method: data["method"],
             headers: { "Content-Type": "application/json" },
         });
         window.location.reload();

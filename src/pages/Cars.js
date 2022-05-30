@@ -1,13 +1,17 @@
 import Bob from "../bob/bob";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Cars() {
     const [data, setData] = useState("");
     const bob = new Bob();
+    const { pathname } = useLocation();
 
     useEffect(async () => {
         //Give path to data to show
-        await bob.path("http://localhost:8080", "cars");
+        let path = ["http://localhost:8080", "cars-pages"];
+        bob.setRedirect(path[0] + pathname);
+        await bob.path(...path);
         bob.includeEmbedded();
         bob.setAppRoot("http://localhost:3000");
         //Give instruction to build data and save inside state

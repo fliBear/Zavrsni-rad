@@ -8,7 +8,7 @@ export default function Navbar() {
                 <Link to="/" className="nav-link">
                     Home
                 </Link>
-                <Link to="/HAL-Forms/cars" className="nav-link">
+                <Link to="/HAL-Forms/cars/1" className="nav-link">
                     Cars
                 </Link>
                 <Link to="/HAL-Forms/manufacturers" className="nav-link">

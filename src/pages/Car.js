@@ -6,7 +6,6 @@ export default function Car() {
     const [data, setData] = useState("");
     const bob = new Bob();
     const { id } = useParams();
-    console.log(id);
 
     useEffect(async () => {
         //Give path to data to show

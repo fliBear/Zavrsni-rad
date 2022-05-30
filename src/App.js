@@ -22,7 +22,7 @@ function App() {
                 ></Route>
                 <Route
                     exact
-                    path="/HAL-Forms/cars"
+                    path="/HAL-Forms/cars/:id"
                     element={
                         <div className="page-container">
                             <Navbar></Navbar>

@@ -14,9 +14,20 @@ export default class Bob {
     #useSpecificAttributes = false;
     styles = {};
     appRoot;
+    #nextIana = [];
+    #redirect;
+
+    setRedirect(redirect) {
+        this.#redirect = redirect;
+    }
 
     async path() {
-        this.#toBuild = await follow(...arguments);
+        if (this.#redirect === undefined) {
+            this.#toBuild = await follow(...arguments);
+        } else {
+            this.#toBuild = await follow(this.#redirect);
+        }
+
         if (
             Object.keys(this.#toBuild).length === 1 &&
             this.#toBuild[Object.keys(this.#toBuild)[0]] != "_links"
@@ -80,6 +91,9 @@ export default class Bob {
 
     #buildForms(someData, styleData, root) {
         return someData.map((l) => {
+            // if (l[0] == "next") {
+            //     this.#nextIana.unshift(l[1]);
+            // }
             if (isObject(l[1])) {
                 return (
                     <TemplateForm
