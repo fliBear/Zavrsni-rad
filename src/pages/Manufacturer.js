@@ -1,34 +1,34 @@
-import Bob from "../bob/bob";
+import Rb from "../rb/rb";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function Manufacturer() {
     const [data, setData] = useState("");
-    const bob = new Bob();
+    const rb = new Rb();
     const { id } = useParams();
 
     useEffect(async () => {
-        bob.setAppRoot("http://localhost:3000");
+        rb.setAppRoot("http://localhost:3000");
         //Give path to data to show
-        await bob.path(
+        await rb.path(
             "http://localhost:8080",
             "manufacturers",
             "manufacturer" + id
         );
-        bob.setStyle("container", {
+        rb.setStyle("container", {
             backgroundColor: "#2C2C2EFF",
             color: "white",
             width: "70vw",
         });
-        bob.setStyle("form", {
+        rb.setStyle("form", {
             width: "25vw",
             borderColor: "#c9c9c9",
         });
-        bob.setStyle("btn", {
+        rb.setStyle("btn", {
             backgroundColor: "#EBEBF599",
         });
         //Give instruction to build data and save inside state
-        const getData = await bob.build();
+        const getData = await rb.build();
         setData(getData);
     }, []);
 

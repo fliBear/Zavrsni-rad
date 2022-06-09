@@ -2,12 +2,12 @@ import { follow } from "../hef/hef";
 import { extractData, findData } from "./data-tools";
 import { extractLinks } from "./link-tools";
 import uniqid from "uniqid";
-import "./bob-styles.css";
+import "./rb-styles.css";
 import TemplateForm from "./form-builder";
 import { isObject } from "./utils";
 import Embedded from "./Embedded";
 
-export default class Bob {
+export default class Rb {
     #includeEmbedded = false; // <--------------
     #toBuild;
     #specificAttributes = [];
