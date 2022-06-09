@@ -2,12 +2,14 @@ body,
 html {
     margin: 0;
     padding: 0;
+    background-color: #1C1C1EFF;
 }
 
 .navbar {
     height: 3rem;
-    width: 100vw;
-    background-color: rgb(131, 94, 161);
+    width: 100%;
+    /* background-color: rgb(131, 94, 161); */
+    background-color: #2C2C2EFF;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -32,4 +34,14 @@ html {
 
 .page-body {
     padding-left: 2rem;
+}
+
+.title {
+    margin-top: 5em;
+    margin-bottom: 2em;
+    color: white;
+}
+
+.description {
+    color: white;
 }

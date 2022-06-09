@@ -1,27 +1,24 @@
 import Bob from "../bob/bob";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function Manufacturers() {
+export default function Manufacturer() {
     const [data, setData] = useState("");
     const bob = new Bob();
+    const { id } = useParams();
 
     useEffect(async () => {
-        //Give path to data to show
-        await bob.path("http://localhost:8080", "manufacturers");
-        bob.includeEmbedded();
         bob.setAppRoot("http://localhost:3000");
+        //Give path to data to show
+        await bob.path(
+            "http://localhost:8080",
+            "manufacturers",
+            "manufacturer" + id
+        );
         bob.setStyle("container", {
             backgroundColor: "#2C2C2EFF",
             color: "white",
             width: "70vw",
-        });
-        bob.setStyle("min-max", {
-            height: "3rem",
-            backgroundColor: "#EBEBF52E",
-        });
-        bob.setStyle("embedded-container", {
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
         });
         bob.setStyle("form", {
             width: "25vw",
@@ -37,10 +34,7 @@ export default function Manufacturers() {
 
     return (
         <div className="page-body">
-            <h2 className="description">
-                Here is a component created from data of all current
-                manufacturers.
-            </h2>
+            <h2 className="description">Here is a manufacturer.</h2>
             {data}
         </div>
     );

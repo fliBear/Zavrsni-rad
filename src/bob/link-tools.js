@@ -69,6 +69,7 @@ function linksAndTemplatesMissmatching(data) {
             for (let i = 0; i < linkData.length; i++) {
                 if (linkData[i][0] === links[link]["href"]) {
                     linkData[i][0] = title;
+                    break;
                 }
             }
         }

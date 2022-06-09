@@ -5,9 +5,10 @@ async function follow() {
     }
     //Get root response
     let data = await getData(arguments[0]);
+    let link = arguments[0];
 
     for (var i = 1; i < arguments.length; i++) {
-        let link;
+        // let link;
 
         if (Array.isArray(arguments[i])) {
             //Get first attribute from data to follow
@@ -31,7 +32,8 @@ async function follow() {
         data = await getData(link["href"]);
     }
 
-    return data;
+    link = getPath(link["href"]);
+    return [data, link];
 }
 
 async function getData(link) {
@@ -55,6 +57,16 @@ function findLink(data, attribute) {
         link = data[attribute];
     }
     return link;
+}
+
+function getPath(path) {
+    if (path === undefined) {
+        return;
+    }
+    let newPath = path.split("/");
+    newPath = newPath.slice(3, newPath.length);
+    newPath = newPath.join("/");
+    return newPath;
 }
 
 export { follow };

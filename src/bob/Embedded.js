@@ -42,7 +42,10 @@ export default function Embedded(props) {
             }
         }
         return (
-            <div>
+            <div
+                className="embedded-container"
+                style={props.styleData["embedded-container"]}
+            >
                 {dataToBuild.map((e) => {
                     const foundData = findData(e);
                     const links = extractLinks(e);

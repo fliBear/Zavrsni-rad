@@ -14,9 +14,6 @@ export default function Navbar() {
                 <Link to="/HAL-Forms/manufacturers" className="nav-link">
                     Manufacturers
                 </Link>
-                <Link to="/HAL-Forms/car/2" className="nav-link">
-                    Single Car
-                </Link>
             </div>
         </nav>
     );

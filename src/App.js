@@ -4,9 +4,30 @@ import Cars from "./pages/Cars";
 import Manufacturers from "./pages/Manufacturers";
 import Navbar from "./Navbar";
 import Car from "./pages/Car";
+import Manufacturer from "./pages/Manufacturer";
 import "./styles/styles.css";
+import { useEffect, useState } from "react";
+import { follow } from "./hef/hef";
 
 function App() {
+    const [links, setLinks] = useState({});
+
+    useEffect(async () => {
+        let linkData = {};
+        let carsPages = await follow("http://localhost:8080", "cars-pages");
+        carsPages = carsPages[1].split("/");
+        carsPages[carsPages.length - 1] = ":id";
+        carsPages = carsPages.join("/");
+        linkData["carsPages"] = carsPages;
+        //manufacturers
+        let manufacturers = await follow(
+            "http://localhost:8080",
+            "manufacturers"
+        );
+        linkData["manufacturers"] = manufacturers[1];
+        setLinks(linkData);
+    }, []);
+
     return (
         <BrowserRouter>
             <Routes>
@@ -22,7 +43,7 @@ function App() {
                 ></Route>
                 <Route
                     exact
-                    path="/HAL-Forms/cars/:id"
+                    path={links["carsPages"]}
                     element={
                         <div className="page-container">
                             <Navbar></Navbar>
@@ -32,7 +53,7 @@ function App() {
                 ></Route>
                 <Route
                     exact
-                    path="/HAL-Forms/manufacturers"
+                    path={links["manufacturers"]}
                     element={
                         <div className="page-container">
                             <Navbar></Navbar>
@@ -47,6 +68,16 @@ function App() {
                         <div className="page-container">
                             <Navbar></Navbar>
                             <Car></Car>
+                        </div>
+                    }
+                ></Route>
+                <Route
+                    exact
+                    path="/HAL-Forms/manufacturer/:id"
+                    element={
+                        <div className="page-container">
+                            <Navbar></Navbar>
+                            <Manufacturer></Manufacturer>
                         </div>
                     }
                 ></Route>

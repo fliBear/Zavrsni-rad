@@ -14,7 +14,7 @@ export default class Bob {
     #useSpecificAttributes = false;
     styles = {};
     appRoot;
-    #nextIana = [];
+    nextIana = [];
     #redirect;
 
     setRedirect(redirect) {
@@ -27,7 +27,7 @@ export default class Bob {
         } else {
             this.#toBuild = await follow(this.#redirect);
         }
-
+        this.#toBuild = this.#toBuild[0];
         if (
             Object.keys(this.#toBuild).length === 1 &&
             this.#toBuild[Object.keys(this.#toBuild)[0]] != "_links"
@@ -90,10 +90,11 @@ export default class Bob {
     }
 
     #buildForms(someData, styleData, root) {
-        return someData.map((l) => {
-            // if (l[0] == "next") {
-            //     this.#nextIana.unshift(l[1]);
-            // }
+        let basicLinksForms = someData.map((l) => {
+            if (l[0] == "next") {
+                this.nextIana.unshift(["next", l[1]]);
+                return;
+            }
             if (isObject(l[1])) {
                 return (
                     <TemplateForm
@@ -115,6 +116,31 @@ export default class Bob {
                 );
             }
         });
+        let relationsLinks =
+            this.nextIana !== undefined
+                ? this.nextIana.map((l) => {
+                      let redirected =
+                          root === undefined
+                              ? l[1]
+                              : root + "/" + l[1].split("/").slice(3).join("/");
+                      return (
+                          <a href={redirected} key={uniqid()}>
+                              <button
+                                  className="btn"
+                                  style={this.styles["btn"]}
+                              >
+                                  {l[0]}
+                              </button>
+                          </a>
+                      );
+                  })
+                : "";
+        return (
+            <div>
+                {basicLinksForms}
+                {relationsLinks}
+            </div>
+        );
     }
 
     build() {

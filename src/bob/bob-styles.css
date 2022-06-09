@@ -11,6 +11,10 @@
     margin-left: 2em;
 }
 
+a {
+    color:inherit
+}
+
 .template-form {
     border-style: solid;
     border-color: rgb(75, 75, 240);
